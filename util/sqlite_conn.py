@@ -1,4 +1,5 @@
 import sqlite3
+
 from util.logger import setup_logger
 
 
@@ -13,7 +14,7 @@ class SQLiteConnection:
     Methods:
     - __init__(self, db_name: str): Constructor to initialize the SQLite connection.
     - connect(self): To create a sqlite database
-    - create_table(self, create_table_query: str) -> None: 
+    - create_table(self, create_table_query: str) -> None:
         To create table using a sql create statement
     - insert_data(self, table_name: str, data) -> None: To insert the records into the sqlite table
     - insert_dataframe(self, table_name: str, df, insert_type='append') -> None:
@@ -22,6 +23,7 @@ class SQLiteConnection:
         Executes a SQL script containing sql query and return the result of it.
     - close_connection(self) -> None: Closes the SQLite database connection.
     """
+
     def __init__(self, db_name: str):
         """
         Constructor to initialize the SQLite connection.
@@ -64,15 +66,15 @@ class SQLiteConnection:
         try:
             with self.conn:
                 cursor = self.conn.cursor()
-                columns = ', '.join(data.keys())
-                values = ', '.join(['?' for _ in range(len(data))])
+                columns = ", ".join(data.keys())
+                values = ", ".join(["?" for _ in range(len(data))])
                 insert_query = f"INSERT INTO {table_name} ({columns}) VALUES ({values})"
                 cursor.execute(insert_query, tuple(data.values()))
                 # self.logger.info(f"Data inserted into table {table_name} successfully")
         except sqlite3.Error as e:
             self.logger.debug(f"Error inserting data into table {table_name}: {e}")
-    
-    def insert_dataframe(self, table_name: str, df, insert_type='append') -> None:
+
+    def insert_dataframe(self, table_name: str, df, insert_type="append") -> None:
         """
         Method to insert the records of a dataframe into the sqlite table
         - param table_name: Name of the table in which data is to be inserted
@@ -85,7 +87,7 @@ class SQLiteConnection:
                 # self.logger.info(f"DF inserted into table {table_name} successfully")
         except sqlite3.Error as e:
             self.logger.debug(f"Error inserting data into table {table_name}: {e}")
-    
+
     def execute_query(self, sql_query: str):
         """
         Executes a SQL script containing sql query and return the result of it.
