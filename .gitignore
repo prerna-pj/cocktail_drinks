@@ -5,7 +5,7 @@
 .venv
 .vscode
 .python-version
-venv
+venv/
 # *.iml
 
 # Log files
