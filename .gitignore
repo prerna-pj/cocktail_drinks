@@ -1,0 +1,11 @@
+
+# List of files and directories to be ignored and not tracked by by Git
+
+# IDE and VirtualEnv
+.venv
+.vscode
+.python-version
+# *.iml
+
+# Log files
+log
