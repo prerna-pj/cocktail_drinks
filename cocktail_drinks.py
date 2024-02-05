@@ -21,7 +21,7 @@ sqlite_db = SQLiteConnection(db_name=SQLITE_DB_NAME)
 sqlite_db.connect()
 
 
-def test_internet_connection():
+def test_internet_connection() -> None:
     """
     Function to check a working internet connection.
     """
@@ -191,9 +191,9 @@ if __name__ == "__main__":
     create_sqlite_tables()
 
     # Loop through all the ascii characters and download the drinks from the api
-    char_list = string.printable
-    for letter in char_list:
-        params = {"f": letter}
+    char_list = list(string.ascii_lowercase + string.digits)
+    for char in char_list:
+        params = {"f": char}
         drinks = download_drinks_api(api_url=API_URL, params=params)
         if drinks:
             insert_api_data(drinks_data=drinks)

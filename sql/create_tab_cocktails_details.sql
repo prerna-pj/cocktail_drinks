@@ -1,5 +1,5 @@
 -- schema to store the drink details
-CREATE TABLE IF NOT EXISTS cocktails_details(
+CREATE TABLE IF NOT EXISTS cocktails_details (
     drink_id INTEGER,
     drink_name TEXT,
     drink_alternate_name TEXT,
